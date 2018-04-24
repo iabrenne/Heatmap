@@ -1,5 +1,7 @@
 const w = 1500;
 const h = 750;
+const dataset = originalDataset.monthlyVariance;
+
 
 const svg = d3.select("body")
            .append("svg")
@@ -16,7 +18,10 @@ svg.selectAll("rect")
     .attr("x",10)
     .attr("y",20)
     .attr("rx",10)
-    .attr("ry",20);
+    .attr("ry",20)
+    .attr("data-month", d => d.month)
+    .attr("data-year", d => d.year)
+    .attr("data-temp", d => originalDataset.baseTemperature + d.variance);
 
 svg.append("g")
     .attr("id","x-axis");
