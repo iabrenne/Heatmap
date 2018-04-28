@@ -5,15 +5,15 @@ const dataset = originalDataset.monthlyVariance;
 const minYear = d3.min(dataset, d=>d.year);
 const maxYear = d3.max(dataset, d=>d.year);
 const xRange = maxYear - minYear;
-const rectWidth = 4 ;
-const rectHeight = 20 ;
+const rectWidth = 4.9 ;
+const rectHeight = 37.5 ;
 
 const xScale =  d3.scaleLinear()
                   .domain([minYear - (xRange * .001), maxYear +  (xRange * .001)])
                   .range([padding, w-padding]);
                   
 const yScale =  d3.scaleLinear()
-                  .domain( [12.5, 0.50 ])
+                  .domain( [12.9, 1])
                   .range([h - padding, padding]);
 
 
@@ -31,7 +31,7 @@ svg.selectAll("rect")
     .attr("height",rectHeight)
     .attr("x",d => xScale(d.year))
     .attr("y",d => yScale(d.month))
-    .attr("data-month", d => d.month)
+    .attr("data-month", d => d.month - 1)
     .attr("data-year", d => d.year)
     .attr("data-temp", d => originalDataset.baseTemperature + d.variance);
 
@@ -68,7 +68,7 @@ const yAxis = d3.axisLeft(yScale)
                         case 12:
                             return 'December';
                         default:
-                            return 'Unknown'
+                            return ''
                         }
                     }); 
 
