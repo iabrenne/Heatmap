@@ -82,3 +82,8 @@ svg.append("g")
        .attr("transform","translate(" + padding + ", 0)")
        .call(yAxis);
 
+
+// Create a legend
+
+svg.append("g")
+   .attr("id","legend");
