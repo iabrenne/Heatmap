@@ -94,12 +94,17 @@ svg.append("g")
 
 const quantile = d3.scaleQuantile()
                 .domain([minTemp,maxTemp])
-                .range(["rgb(3, 38, 165)",
-                        "rgb(255, 191, 0)",
-                        "rgb(255, 0, 0)"]);
+                .range(["rgb(0, 51, 153)",
+                        "rgb(0, 102, 255)",
+                        "rgb(153, 153, 255)",
+                        "rgb(255, 102, 255)",
+                        "rgb(255, 102, 153)",
+                        "rgb(255, 102, 0)",
+                        "rgb(153, 51, 0)"]);
 
 
 const legend = d3.legendColor()
+                 .orient("horizontal")
                  .scale(quantile);
 
 svg.select("#legend")
