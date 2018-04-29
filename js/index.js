@@ -7,6 +7,8 @@ const maxYear = d3.max(dataset, d=>d.year);
 const xRange = maxYear - minYear;
 const rectWidth = 4.9 ;
 const rectHeight = 37.5 ;
+const minTemp = d3.min(dataset, d=>d.variance) + originalDataset.baseTemperature;
+const maxTemp = d3.max(dataset, d=>d.variance) + originalDataset.baseTemperature;
 
 const xScale =  d3.scaleLinear()
                   .domain([minYear - (xRange * .001), maxYear +  (xRange * .001)])
@@ -86,4 +88,19 @@ svg.append("g")
 // Create a legend
 
 svg.append("g")
-   .attr("id","legend");
+   .attr("id","legend")
+   .attr("transform","translate(1000,600)");
+
+
+const quantile = d3.scaleQuantile()
+                .domain([minTemp,maxTemp])
+                .range(["rgb(3, 38, 165)",
+                        "rgb(255, 191, 0)",
+                        "rgb(255, 0, 0)"]);
+
+
+const legend = d3.legendColor()
+                 .scale(quantile);
+
+svg.select("#legend")
+   .call(legend);
