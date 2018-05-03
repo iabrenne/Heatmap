@@ -9,6 +9,18 @@ const rectWidth = 4.9 ;
 const rectHeight = 37.5 ;
 const minTemp = d3.min(dataset, d=>d.variance) + originalDataset.baseTemperature;
 const maxTemp = d3.max(dataset, d=>d.variance) + originalDataset.baseTemperature;
+const colorRanges = ["rgb(0, 51, 153)",
+                     "rgb(0, 102, 255)",
+                     "rgb(153, 153, 255)",
+                     "rgb(255, 102, 255)",
+                     "rgb(255, 102, 153)",
+                     "rgb(255, 102, 0)",
+                     "rgb(153, 51, 0)"];
+
+const quantile = d3.scaleQuantile()
+    .domain([minTemp,maxTemp])
+    .range(colorRanges);
+
 
 const xScale =  d3.scaleLinear()
                   .domain([minYear - (xRange * .001), maxYear +  (xRange * .001)])
@@ -29,6 +41,7 @@ svg.selectAll("rect")
     .enter()
     .append("rect")
     .attr("class","cell")
+    .attr("style", d => "fill:" + quantile(originalDataset.baseTemperature + d.variance))
     .attr("width",rectWidth)
     .attr("height",rectHeight)
     .attr("x",d => xScale(d.year))
@@ -92,15 +105,6 @@ svg.append("g")
    .attr("transform","translate(1000,600)");
 
 
-const quantile = d3.scaleQuantile()
-                .domain([minTemp,maxTemp])
-                .range(["rgb(0, 51, 153)",
-                        "rgb(0, 102, 255)",
-                        "rgb(153, 153, 255)",
-                        "rgb(255, 102, 255)",
-                        "rgb(255, 102, 153)",
-                        "rgb(255, 102, 0)",
-                        "rgb(153, 51, 0)"]);
 
 
 const legend = d3.legendColor()
