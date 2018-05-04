@@ -9,6 +9,9 @@ const rectWidth = 4.9 ;
 const rectHeight = 37.5 ;
 const minTemp = d3.min(dataset, d=>d.variance) + originalDataset.baseTemperature;
 const maxTemp = d3.max(dataset, d=>d.variance) + originalDataset.baseTemperature;
+const tooltipOffsetHorizontal = 25;
+const tooltipOffsetVertical = 50;
+
 const colorRanges = ["rgb(0, 51, 153)",
                      "rgb(0, 102, 255)",
                      "rgb(153, 153, 255)",
@@ -48,7 +51,28 @@ svg.selectAll("rect")
     .attr("y",d => yScale(d.month))
     .attr("data-month", d => d.month - 1)
     .attr("data-year", d => d.year)
-    .attr("data-temp", d => originalDataset.baseTemperature + d.variance);
+    .attr("data-temp", d => originalDataset.baseTemperature + d.variance)
+    .on("mouseover",(d)=>{ 
+
+        let tooltipElem = document.getElementById("tooltip");
+    
+        tooltipElem.style.display = "block";
+        
+        tooltipElem.innerText = `${d.month}-${d.year}\n` ;
+    
+        tooltipElem.setAttribute("data-year", d.year);
+    
+        tooltipElem.style.left= (xScale(d.year) + tooltipOffsetHorizontal) + "px";
+        tooltipElem.style.top = (yScale(d.month) + tooltipOffsetVertical) + "px";
+    
+    })
+    .on("mouseout",()=>{ 
+    
+        let tooltipElem = document.getElementById("tooltip");
+            
+        tooltipElem.style.display = "none";
+    
+    });
 
 const xAxis = d3.axisBottom(xScale)
                 .tickFormat(d3.format("d") );
