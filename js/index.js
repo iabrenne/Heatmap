@@ -20,6 +20,38 @@ const colorRanges = ["rgb(0, 51, 153)",
                      "rgb(255, 102, 0)",
                      "rgb(153, 51, 0)"];
 
+const getMonth = (monthNum) => {
+    switch(monthNum){
+        case 1:
+            return 'January';
+        case 2:
+            return 'February';
+        case 3:
+            return 'March';
+        case 4:
+            return 'April';
+        case 5:
+            return 'May';
+        case 6:
+            return 'June';
+        case 7:
+            return 'July';
+        case 8:
+            return 'August';
+        case 9:
+            return 'September';
+        case 10:
+            return 'October';
+        case 11:
+            return 'November';
+        case 12:
+            return 'December';
+        default:
+            return ''
+        }
+
+};
+
 const quantile = d3.scaleQuantile()
     .domain([minTemp,maxTemp])
     .range(colorRanges);
@@ -58,7 +90,7 @@ svg.selectAll("rect")
     
         tooltipElem.style.display = "block";
         
-        tooltipElem.innerText = `${d.month}-${d.year}\n` ;
+        tooltipElem.innerText = `${getMonth(d.month)} ${d.year}\n` ;
     
         tooltipElem.setAttribute("data-year", d.year);
     
@@ -78,38 +110,7 @@ const xAxis = d3.axisBottom(xScale)
                 .tickFormat(d3.format("d") );
 
 const yAxis = d3.axisLeft(yScale)
-                .tickFormat(d => {
-            
-                    switch(d)
-                        {
-                        case 1:
-                            return 'January';
-                        case 2:
-                            return 'February';
-                        case 3:
-                            return 'March';
-                        case 4:
-                            return 'April';
-                        case 5:
-                            return 'May';
-                        case 6:
-                            return 'June';
-                        case 7:
-                            return 'July';
-                        case 8:
-                            return 'August';
-                        case 9:
-                            return 'September';
-                        case 10:
-                            return 'October';
-                        case 11:
-                            return 'November';
-                        case 12:
-                            return 'December';
-                        default:
-                            return ''
-                        }
-                    }); 
+                .tickFormat(d => getMonth(d)); 
 
 svg.append("g")
        .attr("id","x-axis")
