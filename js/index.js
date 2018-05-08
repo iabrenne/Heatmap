@@ -130,9 +130,22 @@ svg.append("g")
    .attr("transform","translate(1000,600)");
 
 svg.append("text")
-    .attr("transform", "translate(" + ( w/2 )+ "," + (h-padding/2) + ")")
+   .attr("transform", "translate(" + ( w/2 )+ "," + (h-padding/2 + 25) + ")")
    .attr("id","x-label")
+   .style("font-family","Georgia,Serif")
+   .style("font-size","20px")
+   .style("font-weight","bold")
    .text("Years");
+
+svg.append("text")
+   .attr("transform", "rotate(-90)")
+   .attr("x",-h/2)
+   .attr("y",padding - 25)
+   .attr("id","y-label")
+   .style("font-family","Georgia,Serif")
+   .style("font-size","20px")
+   .style("font-weight","bold")
+   .text("Months");
 
 
 
