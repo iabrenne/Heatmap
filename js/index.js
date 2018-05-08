@@ -79,7 +79,7 @@ svg.selectAll("rect")
     .attr("style", d => "fill:" + quantile(originalDataset.baseTemperature + d.variance))
     .attr("width",rectWidth)
     .attr("height",rectHeight)
-    .attr("x",d => xScale(d.year))
+    .attr("x",d => xScale(d.year) + 50)
     .attr("y",d => yScale(d.month))
     .attr("data-month", d => d.month - 1)
     .attr("data-year", d => d.year)
@@ -114,12 +114,12 @@ const yAxis = d3.axisLeft(yScale)
 
 svg.append("g")
        .attr("id","x-axis")
-       .attr("transform","translate(0," + (h-padding) + ")")
+       .attr("transform","translate(50," + (h-padding) + ")")
        .call(xAxis);
 
 svg.append("g")
        .attr("id","y-axis")
-       .attr("transform","translate(" + padding + ", 0)")
+       .attr("transform","translate(" + (padding + 50 ) + ", 0)")
        .call(yAxis);
 
 
@@ -128,6 +128,11 @@ svg.append("g")
 svg.append("g")
    .attr("id","legend")
    .attr("transform","translate(1000,600)");
+
+svg.append("text")
+    .attr("transform", "translate(" + ( w/2 )+ "," + (h-padding/2) + ")")
+   .attr("id","x-label")
+   .text("Years");
 
 
 
