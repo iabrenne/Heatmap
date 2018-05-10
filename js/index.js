@@ -132,6 +132,21 @@ svg.append("g")
    .attr("id","legend")
    .attr("transform","translate(1000,600)");
 
+// Add title
+
+svg.append("text")
+        .attr("x", (w/2))   
+        .attr("id","graph-title")     
+        .style("font-family","Georgia,Serif")     
+        .attr("y", 0 + (padding/ 2))
+        .attr("text-anchor", "middle")  
+        .style("font-size", "21px") 
+        .style("font-weight","bold")
+        .style("text-decoration", "underline")  
+        .text("Monthly Global Temperatures");
+
+
+// Add x-axis label
 svg.append("text")
    .attr("transform", "translate(" + ( w/2 )+ "," + (h-padding/2 + 25) + ")")
    .attr("id","x-label")
@@ -140,6 +155,7 @@ svg.append("text")
    .style("font-weight","bold")
    .text("Years");
 
+// Add y-axis label
 svg.append("text")
    .attr("transform", "rotate(-90)")
    .attr("x",-h/2)
