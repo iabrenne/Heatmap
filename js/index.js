@@ -12,13 +12,16 @@ const maxTemp = d3.max(dataset, d=>d.variance) + originalDataset.baseTemperature
 const tooltipOffsetHorizontal = 25;
 const tooltipOffsetVertical = 50;
 
-const colorRanges = ["rgb(0, 51, 153)",
-                     "rgb(0, 102, 255)",
-                     "rgb(153, 153, 255)",
-                     "rgb(255, 102, 255)",
-                     "rgb(255, 102, 153)",
-                     "rgb(255, 102, 0)",
-                     "rgb(153, 51, 0)"];
+const colorRanges = ["rgb(102, 102, 51)",
+                     "rgb(153, 204, 0)",
+                     "rgb(204, 255, 51)",
+                     "rgb(255, 255, 102)",
+                     "rgb(255, 204, 102)",
+                     "rgb(255, 153, 102)",
+                     "rgb(255, 102, 102)",
+                     "rgb(255, 0, 102)",
+                     "rgb(204, 102, 153)",
+                     "rgb(153, 51, 102)"];
 
 const getMonth = (monthNum) => {
     switch(monthNum){
