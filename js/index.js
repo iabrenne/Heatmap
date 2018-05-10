@@ -1,5 +1,6 @@
 const w = 1500;
 const h = 620;
+const svgH = 750;
 const padding = 80;
 const dataset = originalDataset.monthlyVariance;
 const minYear = d3.min(dataset, d=>d.year);
@@ -72,7 +73,7 @@ const yScale =  d3.scaleLinear()
 const svg = d3.select("body")
            .append("svg")
            .attr("width", w)
-           .attr("height", h);
+           .attr("height", svgH);
 
 svg.selectAll("rect")
     .data(dataset)
@@ -130,7 +131,7 @@ svg.append("g")
 
 svg.append("g")
    .attr("id","legend")
-   .attr("transform","translate(1000,600)");
+   .attr("transform","translate(900,600)");
 
 // Add title
 
@@ -168,8 +169,13 @@ svg.append("text")
 
 
 
-
-const legend = d3.legendColor()
+// create a legend
+const legend = d3.legendColor()                 
+                 .labels( function({i, genLength}){ 
+                            return d3.format(".2f")( ( maxTemp - minTemp ) / genLength  * (i+1)); 
+                        })
+                 .shapeWidth(40)
+                 .shapeHeight(40)
                  .orient("horizontal")
                  .scale(quantile);
 
