@@ -77,7 +77,8 @@ const svg = d3.select("body")
            .attr("class","w3-card-2")
            .attr("display","block")
            .style("margin","auto")
-           .style("margin-top","80px");;
+           .style("margin-top","80px")
+           .style("background-color","cadetblue");
 
 svg.selectAll("rect")
     .data(dataset)
