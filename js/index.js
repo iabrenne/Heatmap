@@ -119,11 +119,13 @@ const yAxis = d3.axisLeft(yScale)
 svg.append("g")
        .attr("id","x-axis")
        .attr("transform","translate(50," + (h-padding) + ")")
+       .style("font-size", "15px")
        .call(xAxis);
 
 svg.append("g")
        .attr("id","y-axis")
        .attr("transform","translate(" + (padding + 50 ) + ", 0)")
+       .style("font-size", "15px") 
        .call(yAxis);
 
 
@@ -141,7 +143,7 @@ svg.append("text")
         .style("font-family","Georgia,Serif")     
         .attr("y", 0 + (padding/ 2))
         .attr("text-anchor", "middle")  
-        .style("font-size", "21px") 
+        .style("font-size", "24px") 
         .style("font-weight","bold")
         .style("text-decoration", "underline")  
         .text("Monthly Global Temperatures");
