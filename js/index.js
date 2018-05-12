@@ -73,7 +73,11 @@ const yScale =  d3.scaleLinear()
 const svg = d3.select("body")
            .append("svg")
            .attr("width", w)
-           .attr("height", svgH);
+           .attr("height", svgH)
+           .attr("class","w3-card-2")
+           .attr("display","block")
+           .style("margin","auto")
+           .style("margin-top","80px");;
 
 svg.selectAll("rect")
     .data(dataset)
