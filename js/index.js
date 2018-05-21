@@ -66,8 +66,8 @@ const xScale =  d3.scaleLinear()
                   .range([padding, w-padding]);
                   
 const yScale =  d3.scaleLinear()
-                  .domain( [12.9, 1])
-                  .range([h - padding, padding]);
+                  .domain( [0.5,12.5])
+                  .range([padding, h - padding]);
 
 
 const svg = d3.select("body")
@@ -90,7 +90,7 @@ svg.selectAll("rect")
     .attr("height",rectHeight)
     .attr("x",d => xScale(d.year))
     .attr("y",d => yScale(d.month))
-    .attr("transform", "translate(50,0)")
+    .attr("transform", "translate(50,-" + rectHeight/2 + ")")
     .attr("data-month", d => d.month - 1)
     .attr("data-year", d => d.year)
     .attr("data-temp", d => originalDataset.baseTemperature + d.variance)
