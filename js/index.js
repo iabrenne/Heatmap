@@ -179,9 +179,9 @@ svg.append("text")
 
 // create a legend
 const legend = d3.legendColor()                 
-                 .labels( function({i, genLength}){ 
-                            return d3.format(".2f")( ( maxTemp - minTemp ) / genLength  * (i+1)); 
-                        })
+                //  .labels( function({i, genLength}){ 
+                //             return d3.format(".2f")( ( maxTemp - minTemp ) / genLength  * (i+1)); 
+                //         })
                  .shapeWidth(40)
                  .shapeHeight(40)
                  .orient("horizontal")
